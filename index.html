@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <meta charset="utf-8">
+ <title>Meme generator</title>
+ 
+ <style media="screen">
+  .container{
+    width: 1000px;
+    height: 1000px;
+    position: relative;
+   }
+   .overlay {
+    width: 1000px;
+    height: 1000px;
+    position: absolute;
+   }
+   .background {
+    width: 1000px;
+    height: 1000px;
+   }
+   .text{
+		color: white;
+		font-family: 'Arial';
+    font-size: 80px;
+		font-weight: 800;
+		text-align: center;
+		width: 90%;
+		position: absolute;
+		top: 40%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		text-transform: uppercase;
+    text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;  
+   }	
+   .text highlighted{
+		color: red;
+   }
+   .controls{
+     margin: 5px;
+   }	
+ </style>
+
+</head>
+<body>
+ <div class="container" id="result">
+  <img class="overlay" src="overlay/pink.png" id="overlay" alt="">
+  <img class="background" src="1.jpg" id="meme" alt="">
+  <p class="text" id="top">text</p>
+</div>
+<div class="controls" id="controls">
+  <table>
+    <tr>
+        <td>
+            <label>background: </label>
+        </td>
+        <td>
+            <input type="file" id="backgroundFile" accept="image/png, image/jpeg" onchange="setBackground()" />
+        </td>
+        
+    </tr>
+    <tr>
+        <td>
+            <label>overlay: </label>
+        </td>
+        <td>
+            <select id="overlaySelector" onchange="setOverlay()">
+                <option value="pink">pink</option>
+                <option value="yellow">yellow</option>
+                <option value="red">red</option>
+                <option value="orange">orange</option>
+                <option value="lime">lime</option>
+                <option value="green">green</option>
+                <option value="turquoise">turquoise</option>
+                <option value="blue">blue</option>
+                <option value="purple">purple</option>
+                <option value="gray">gray</option>
+            </select>
+        </td>
+    </tr>
+  </table>
+  <div>
+      
+  </div>
+  <form>
+      
+  </form>
+  <div>
+      <input type="text" id="normalText1" name="" onkeyup="setText()" value="" placeholder="text" style="width: 300px;">
+      <input type="text" id="highlightedText1" name="" onkeyup="setText()" value="" placeholder="highlighted text">
+      <input type="color" id="highlightedColor1" value="#ff0000" onchange="setColor()" onclick="setColor()">
+  </div>
+  <div>
+      <input type="text" id="normalText2" name="" onkeyup="setText()" value="" placeholder="text" style="width: 300px;">
+      <input type="text" id="highlightedText2" name="" onkeyup="setText()" value="" placeholder="highlighted text">
+      <input type="color" id="highlightedColor2" value="#ff0000" onchange="setColor()" onclick="setColor()">
+  </div>
+  <div>
+    <input type="text" id="normalText3" name="" onkeyup="setText()" value="" placeholder="text">
+</div>
+  <div>
+      <button type="button" onclick="updateTextSize(-2)">-</button>
+      <button type="button" onclick="updateTextSize(+2)">+</button>
+      <button type="button" onclick="generateMeme()">get meme</button>
+  </div>
+ 
+
+</div>
+<!-- todo <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script> -->
+<script type="text/javascript" src="html2canvas.js"></script>
+<script type="text/javascript">
+
+ function setText(){ 
+    document.getElementById('top').innerHTML =  
+      normalText1.value + "<highlighted id='high1'>" + highlightedText1.value + "</highlighted>" + 
+      normalText2.value + "<highlighted id='high2'>" + highlightedText2.value + "</highlighted>" +
+      normalText3.value;
+
+    this.setColor();  
+ }
+
+ function setColor() {
+   var h1 = document.getElementById('high1');
+   if (h1) h1.style.color = document.getElementById('highlightedColor1').value;
+   var h2 = document.getElementById('high2');
+   if (h2) h2.style.color = document.getElementById('highlightedColor2').value;
+ }
+
+ function updateTextSize(change) {
+    var topElement = document.getElementById("top");
+    var actualSize = parseInt(window.getComputedStyle(document.getElementById("top")).fontSize, 10);
+
+    topElement.style.fontSize = (actualSize + change) + "px";
+ }
+
+  function setOverlay() {
+    document.getElementById('overlay').src = "./overlay/" + document.getElementById("overlaySelector").value + ".png";
+  }
+
+  function setBackground() {
+   document.getElementById('meme').src= "./background/" + document.getElementById('backgroundFile').files[0].name;
+  } 
+
+  function generateMeme() {
+    html2canvas(document.getElementById('result')).then(function(canvas) {
+      document.body.appendChild(canvas);
+    });
+  }
+ 
+</script>
+</body>
+</html>
