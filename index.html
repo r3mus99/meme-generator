@@ -48,7 +48,7 @@
 </head>
 <body>
  <div class="container" id="result">
-  <img class="overlay" src="overlay/pink.png" id="overlay" alt="">
+  <img class="overlay" src="" id="overlay" alt="">
   <img class="background" src="1.jpg" id="meme" alt="">
   <p class="text" id="top">text</p>
 </div>
@@ -68,7 +68,8 @@
             <label>overlay: </label>
         </td>
         <td>
-            <select id="overlaySelector" onchange="setOverlay()">
+            <select id="overlaySelector" onchange="setOverlay(this.value)">
+                <option value="none">none</option>
                 <option value="pink">pink</option>
                 <option value="yellow">yellow</option>
                 <option value="red">red</option>
@@ -137,8 +138,12 @@
     topElement.style.fontSize = (actualSize + change) + "px";
  }
 
-  function setOverlay() {
-    document.getElementById('overlay').src = "./overlay/" + document.getElementById("overlaySelector").value + ".png";
+  function setOverlay(val) {
+    if (val == "none") {
+      document.getElementById('overlay').src = "";
+    } else {
+      document.getElementById('overlay').src = "./overlay/" + val + ".png";
+    }
   }
 
   function setBackground() {
