@@ -20,12 +20,19 @@
     <table>
       <tr>
         <td>
-          <label>background: </label>
+          <label>background (from PC): </label>
         </td>
         <td>
           <input type="file" id="backgroundFile" accept="image/png, image/jpeg" onchange="setBackground()" />
         </td>
-
+      </tr>
+      <tr>
+        <td>
+          <label>background (from web): </label>
+        </td>
+        <td>
+          <input type="text" id="backgroundUrl" placeholder="URL" style="width: 300px;" onchange="setBackgroundFromWeb()">
+        </td>
       </tr>
       <tr>
         <td>

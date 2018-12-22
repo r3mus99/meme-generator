@@ -30,9 +30,14 @@ function setOverlay(val) {
 }
 
 function setBackground() {
-    // var x = document.getElementById("backgroundFile");
-    // alert(x.files[0].name);
     document.getElementById('meme').src = "./background/" + document.getElementById('backgroundFile').files[0].name;
+}
+
+function setBackgroundFromWeb() {
+    var b = document.getElementById('backgroundUrl');
+    var m = document.getElementById('meme');
+    // todo crop given image to square
+    m.src = b.value;
 }
 
 function generateMeme() {
