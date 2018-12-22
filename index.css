@@ -1,0 +1,48 @@
+.container {
+    width: 1000px;
+    height: 1000px;
+    position: relative;
+}
+
+.overlay {
+    width: 1000px;
+    height: 1000px;
+    position: absolute;
+}
+   
+.background {
+    width: 1000px;
+    height: 1000px;
+}
+   
+.text {
+	color: white;
+	font-family: 'Arial';
+    font-size: 80px;
+	font-weight: 800;
+	text-align: center;
+	width: 90%;
+	position: absolute;
+	top: 40%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	text-transform: uppercase;
+    text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;  
+}	
+   
+.text highlighted{
+	color: red;
+}
+
+.controls{
+    margin: 5px;
+}	
+
+label {
+    font-family: 'Arial';
+}
+
