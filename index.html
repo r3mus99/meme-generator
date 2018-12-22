@@ -55,22 +55,28 @@
 
     </form>
     <div>
-      <input type="text" id="normalText1" name="" onkeyup="setText()" value="" placeholder="text" style="width: 300px;">
-      <input type="text" id="highlightedText1" name="" onkeyup="setText()" value="" placeholder="highlighted text">
+      <!-- 1: text, highlighted text (+ color) -->
+      <input type="text" id="normalText1" name="" onkeyup="setText()" value="" placeholder="text 1" style="width: 300px;">
+      <input type="text" id="highlightedText1" name="" onkeyup="setText()" value="" placeholder="highlighted text 1">
       <input type="color" id="highlightedColor1" value="#ff0000" onchange="setColor()" onclick="setColor()">
     </div>
     <div>
-      <input type="text" id="normalText2" name="" onkeyup="setText()" value="" placeholder="text" style="width: 300px;">
-      <input type="text" id="highlightedText2" name="" onkeyup="setText()" value="" placeholder="highlighted text">
+      <!-- 2: text, highlighted text (+ color) -->
+      <input type="text" id="normalText2" name="" onkeyup="setText()" value="" placeholder="text 2" style="width: 300px;">
+      <input type="text" id="highlightedText2" name="" onkeyup="setText()" value="" placeholder="highlighted text 2">
       <input type="color" id="highlightedColor2" value="#ff0000" onchange="setColor()" onclick="setColor()">
     </div>
     <div>
-      <input type="text" id="normalText3" name="" onkeyup="setText()" value="" placeholder="text">
+      <!-- 3: text, text size -->
+      <input type="text" id="normalText3" name="" onkeyup="setText()" value="" placeholder="text 3" style="width: 300px;">
+      <label>text size: </label>
+      <button type="button" onclick="updateTextSize(-10)" style="width: 35px;">-10</button>
+      <button type="button" onclick="updateTextSize(-2)" style="width: 35px;">-2</button>
+      <button type="button" onclick="updateTextSize(+2)" style="width: 35px;">+2</button>
+      <button type="button" onclick="updateTextSize(+10)" style="width: 35px;">+10</button>
     </div>
     <div>
-      <button type="button" onclick="updateTextSize(-2)">-</button>
-      <button type="button" onclick="updateTextSize(+2)">+</button>
-      <button type="button" onclick="generateMeme()">get meme</button>
+      <button type="button" onclick="generateMeme()" style="width: 305px;">get meme</button>
     </div>
   </div>
 </body>
