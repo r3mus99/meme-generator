@@ -30,7 +30,10 @@ function setOverlay(val) {
 }
 
 function setBackground() {
-    document.getElementById('meme').src = "./background/" + document.getElementById('backgroundFile').files[0].name;
+    var b = document.getElementById('backgroundFile');
+    var m = document.getElementById('meme');
+
+    m.src = "./background/" + b.files[0].name;
 }
 
 function setBackgroundFromWeb() {
@@ -41,7 +44,7 @@ function setBackgroundFromWeb() {
 }
 
 function generateMeme() {
-    html2canvas(document.getElementById('result')).then(function (canvas) {
+    html2canvas(document.getElementById('result'), { allowTaint: true }).then(function (canvas) {
         document.body.appendChild(canvas);
     });
 }
