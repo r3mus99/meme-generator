@@ -44,6 +44,7 @@ function setBackgroundFromWeb() {
 }
 
 function generateMeme() {
+    // todo object-fit on generated...
     html2canvas(document.getElementById('result'), { allowTaint: true }).then(function (canvas) {
         document.body.appendChild(canvas);
     });
