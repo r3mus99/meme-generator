@@ -5,6 +5,35 @@ function setText() {
         normalText3.value;
 
     this.setColor();
+    this.comptuteTextSize();
+}
+
+function comptuteTextSize() {
+    var letterCount = getLetterCount();
+    var textSize = 80;
+    if (letterCount < 40) {
+        textSize = 80;
+    } else if (letterCount < 50) {
+        textSize = 70;
+    } else if (letterCount < 60) {
+        textSize = 60;
+    } else if (letterCount < 70) {
+        textSize = 50;
+    } else if (letterCount < 80) {
+        textSize = 40;
+    } else if (letterCount < 90) {
+        textSize = 30;
+    } else {
+        textSize = 20;
+    }
+
+    this.setTextSize(textSize);
+}
+
+function getLetterCount() {
+    return normalText1.value.length + highlightedText1.value.length
+        + normalText2.value.length + highlightedText2.value.length
+        + normalText3.value.length;
 }
 
 function setColor() {
@@ -14,11 +43,19 @@ function setColor() {
     if (h2) h2.style.color = document.getElementById('highlightedColor2').value;
 }
 
-function updateTextSize(change) {
-    var topElement = document.getElementById("top");
-    var actualSize = parseInt(window.getComputedStyle(document.getElementById("top")).fontSize, 10);
+function getActualTextSize() {
+    return parseInt(window.getComputedStyle(document.getElementById("top")).fontSize, 10);
+}
 
-    topElement.style.fontSize = (actualSize + change) + "px";
+function setTextSize(textSize) {
+    var topElement = document.getElementById("top");
+
+    topElement.style.fontSize = (textSize) + "px";
+    console.log('text size: ' + textSize + ' px');
+}
+
+function updateTextSize(change) {
+    this.setTextSize(getActualTextSize() + change);
 }
 
 function setOverlay(val) {
