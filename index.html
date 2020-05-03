@@ -34,13 +34,16 @@
         </tr>
         <tr>
           <td>
-            <label>watermark: </label>
+            <label>watermark (from PC): </label>
           </td>
-          <td>
-            <select id="watermarkSelector" onchange="setWatermark(this.value)">
-              <option value="none">none</option>
-              <option value="tofakt" selected>ToFakt?</option>
-            </select>
+          <td colspan="2">
+            <input
+              type="file"
+              id="watermarkFile"
+              value="tofakt.png"
+              accept="image/png, image/jpeg"
+              onchange="setWatermark(this.value)"
+            />
           </td>
         </tr>
         <tr>

@@ -106,13 +106,10 @@ function updateTextSize(change) {
 }
 
 function setWatermark(val) {
+  const f = document.getElementById("watermarkFile").files[0].name;
   const w = document.getElementById("watermark");
 
-  if (val === "none") {
-    w.style.backgroundImage = "";
-  } else {
-    w.style.backgroundImage = `url(./watermark/${val}.png)`;
-  }
+  w.style.background = `url(./watermark/${f})`;
 }
 
 function setBackground() {
