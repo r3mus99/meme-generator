@@ -1,95 +1,168 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Meme generator</title>
+    <link rel="stylesheet" type="text/css" href="index.css" />
 
-<head>
-  <meta charset="utf-8">
-  <title>Meme generator</title>
-  <link rel="stylesheet" type="text/css" href="index.css">
+    <script type="text/javascript" src="html2canvas.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+  </head>
 
-  <script type="text/javascript" src="html2canvas.js"></script>
-  <script type="text/javascript" src="index.js"></script>
-</head>
-
-<body>
-  <div class="container" id="result">
-    <img class="overlay" src="" id="overlay" alt="">
-    <img class="background" src="1.jpg" id="meme" alt="">
-    <p class="text" id="top">text</p>
-  </div>
-  <div class="controls" id="controls">
-    <table>
-      <tr>
-        <td>
-          <label>background (from PC): </label>
-        </td>
-        <td>
-          <input type="file" id="backgroundFile" accept="image/png, image/jpeg" onchange="setBackground()" />
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <label>background (from web): </label>
-        </td>
-        <td>
-          <input type="text" id="backgroundUrl" placeholder="URL" style="width: 300px;"
-            onchange="setBackgroundFromWeb()">
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <label>overlay: </label>
-        </td>
-        <td>
-          <select id="overlaySelector" onchange="setOverlay(this.value)">
-            <option value="none">none</option>
-            <option value="pink" style="background-color: pink;">pink</option>
-            <option value="yellow" style="background-color: yellow;">yellow</option>
-            <option value="red" style="background-color: red;">red</option>
-            <option value="orange" style="background-color: orange;">orange</option>
-            <option value="lime" style="background-color: lime;">lime</option>
-            <option value="green" style="background-color: green;">green</option>
-            <option value="turquoise" style="background-color: turquoise;">turquoise</option>
-            <option value="blue" style="background-color: blue;">blue</option>
-            <option value="purple" style="background-color: purple;">purple</option>
-            <option value="gray" style="background-color: gray;">gray</option>
-          </select>
-        </td>
-      </tr>
-    </table>
-    <div>
-
+  <body>
+    <div class="container" id="result">
+      <div id="overlay"></div>
+      <div id="watermark"></div>
+      <img class="background" src="1.jpg" id="meme" alt="" />
+      <p class="text" id="top">text</p>
     </div>
-    <form>
-
-    </form>
-    <div>
-      <!-- 1: text, highlighted text (+ color) -->
-      <input type="text" id="normalText1" name="" onkeyup="setText()" value="" placeholder="text 1"
-        style="width: 300px;">
-      <input type="text" id="highlightedText1" name="" onkeyup="setText()" value="" placeholder="highlighted text 1">
-      <input type="color" id="highlightedColor1" value="#ff0000" onchange="setColor()" onclick="setColor()">
+    <div class="controls" id="controls">
+      <table>
+        <tr>
+          <td>
+            <label>background (from web): </label>
+          </td>
+          <td colspan="2">
+            <input
+              type="text"
+              id="backgroundUrl"
+              placeholder="URL"
+              style="width: 300px;"
+              onchange="setBackgroundFromWeb()"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label>watermark: </label>
+          </td>
+          <td>
+            <select id="watermarkSelector" onchange="setWatermark(this.value)">
+              <option value="none">none</option>
+              <option value="tofakt" selected>ToFakt?</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label>overlay: </label>
+          </td>
+          <td>
+            <input
+              type="color"
+              rgba
+              id="overlayColor"
+              value="#ff0000"
+              onchange="setOverlayColor()"
+              onclick="setOverlayColor()"
+            />
+          </td>
+          <td>
+            <input
+              type="number"
+              rgba
+              id="overlayTransparency"
+              value="0.6"
+              onchange="setOverlayColor()"
+              onclick="setOverlayColor()"
+            />
+          </td>
+        </tr>
+      </table>
+      <div></div>
+      <form></form>
+      <div>
+        <!-- 1: text, highlighted text (+ color) -->
+        <input
+          type="text"
+          id="normalText1"
+          name=""
+          onkeyup="setText()"
+          value=""
+          placeholder="text 1"
+          style="width: 300px;"
+        />
+        <input
+          type="text"
+          id="highlightedText1"
+          name=""
+          onkeyup="setText()"
+          value=""
+          placeholder="highlighted text 1"
+        />
+        <input
+          type="color"
+          id="highlightedColor1"
+          value="#ff0000"
+          onchange="setColor()"
+          onclick="setColor()"
+        />
+      </div>
+      <div>
+        <!-- 2: text, highlighted text (+ color) -->
+        <input
+          type="text"
+          id="normalText2"
+          name=""
+          onkeyup="setText()"
+          value=""
+          placeholder="text 2"
+          style="width: 300px;"
+        />
+        <input
+          type="text"
+          id="highlightedText2"
+          name=""
+          onkeyup="setText()"
+          value=""
+          placeholder="highlighted text 2"
+        />
+        <input
+          type="color"
+          id="highlightedColor2"
+          value="#ff0000"
+          onchange="setColor()"
+          onclick="setColor()"
+        />
+      </div>
+      <div>
+        <!-- 3: text, text size -->
+        <input
+          type="text"
+          id="normalText3"
+          name=""
+          onkeyup="setText()"
+          value=""
+          placeholder="text 3"
+          style="width: 300px;"
+        />
+        <label>text size: </label>
+        <button
+          type="button"
+          onclick="updateTextSize(-10)"
+          style="width: 35px;"
+        >
+          -10
+        </button>
+        <button type="button" onclick="updateTextSize(-2)" style="width: 35px;">
+          -2
+        </button>
+        <button type="button" onclick="updateTextSize(+2)" style="width: 35px;">
+          +2
+        </button>
+        <button
+          type="button"
+          onclick="updateTextSize(+10)"
+          style="width: 35px;"
+        >
+          +10
+        </button>
+      </div>
+      <div>
+        <button type="button" onclick="generateMeme()" style="width: 305px;">
+          get meme
+        </button>
+      </div>
     </div>
-    <div>
-      <!-- 2: text, highlighted text (+ color) -->
-      <input type="text" id="normalText2" name="" onkeyup="setText()" value="" placeholder="text 2"
-        style="width: 300px;">
-      <input type="text" id="highlightedText2" name="" onkeyup="setText()" value="" placeholder="highlighted text 2">
-      <input type="color" id="highlightedColor2" value="#ff0000" onchange="setColor()" onclick="setColor()">
-    </div>
-    <div>
-      <!-- 3: text, text size -->
-      <input type="text" id="normalText3" name="" onkeyup="setText()" value="" placeholder="text 3"
-        style="width: 300px;">
-      <label>text size: </label>
-      <button type="button" onclick="updateTextSize(-10)" style="width: 35px;">-10</button>
-      <button type="button" onclick="updateTextSize(-2)" style="width: 35px;">-2</button>
-      <button type="button" onclick="updateTextSize(+2)" style="width: 35px;">+2</button>
-      <button type="button" onclick="updateTextSize(+10)" style="width: 35px;">+10</button>
-    </div>
-    <div>
-      <button type="button" onclick="generateMeme()" style="width: 305px;">get meme</button>
-    </div>
-  </div>
-</body>
-
+  </body>
 </html>
