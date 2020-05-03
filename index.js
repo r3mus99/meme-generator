@@ -126,6 +126,12 @@ function setBackgroundFromWeb() {
   m.src = b.value;
 }
 
+function setSearchUrl() {
+  const i = document.getElementById("searchInput").value;
+  const u = document.getElementById("searchUrl");
+  u.href = `https://www.google.com/search?as_st=y&tbm=isch&as_q=${i}&tbs=isz:l,iar:s`;
+}
+
 function generateMeme() {
   // todo object-fit on generated...
   html2canvas(document.getElementById("result"), { allowTaint: true }).then(

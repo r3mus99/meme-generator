@@ -53,7 +53,6 @@
           <td>
             <input
               type="color"
-              rgba
               id="overlayColor"
               value="#ff0000"
               onchange="setOverlayColor()"
@@ -63,12 +62,31 @@
           <td>
             <input
               type="number"
-              rgba
               id="overlayTransparency"
               value="0.6"
               onchange="setOverlayColor()"
               onclick="setOverlayColor()"
             />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label>search url: </label>
+          </td>
+          <td>
+            <input
+              type="text"
+              id="searchInput"
+              value=""
+              onchange="setSearchUrl()"
+            />
+          </td>
+          <td>
+            <a
+              id="searchUrl"
+              href="https://www.google.com/search?as_st=y&tbm=isch&as_q=sample&tbs=isz:l,iar:s"
+              >search</a
+            >
           </td>
         </tr>
       </table>
